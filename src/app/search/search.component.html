@@ -1,0 +1,49 @@
+<div class="row">
+
+  <div class="col-md-5">
+    <div style="text-align:center">
+      <h1>
+        Welcome to <em>GoodReads PLUS</em>!
+      </h1>
+    </div>
+    <h2>Trend</h2>
+    <app-index-content></app-index-content>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search for..."
+      [(ngModel)]="searchString" >
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" routerLinkActive="active"
+                (click)="pressSearch() ">Book!</button>
+      </span>
+    </div>
+    <div class="checkbox" *ngIf="flag">
+      <div class="input-group">
+        <div class="checkbox checkbox-circle" >
+        <input id="desc" class="styled" type="radio" name="fill"
+               (change)="onItemChange($event.target.id)" [checked]="true">
+        <label for="desc" class="font-bolder">
+          Description
+        </label>
+      </div>
+        <div class="checkbox checkbox-circle">
+        <input id="rev" class="styled" type="radio" name="fill"
+               (change)="onItemChange($event.target.id)">
+        <label for="rev" class="font-bolder">
+          Reviews
+        </label>
+      </div>
+      </div>
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Year Around" id="year"
+               [(ngModel)]="year">
+        <input type="text" class="form-control" placeholder="Author" id="author"
+               [(ngModel)]="author">
+      </div>
+    </div>
+  </div>
+
+</div>
+<router-outlet></router-outlet >

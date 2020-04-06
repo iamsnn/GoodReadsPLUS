@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a routerLink="/" class="navbar-brand">GoodReads PLUS</a>
+    </div>
+    <div class="collapse navbar-collapse" ng-controller="displayController">
+      <ul class="nav navbar-nav">
+        <li routerLinkActive="active"><a routerLink="/search" (click)="toggle()">Search</a></li>
+        <li routerLinkActive="active"><a routerLink="/result">Result</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right" >
+        <li class="dropdown" appDropdown *ngIf="flag">
+          <a style="cursor: pointer;" class="dropdown-toggle" role="button">Manage<span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" >
+            <li><a style="cursor: pointer;" (click)="fetchData()">Fetch Data</a></li>
+            <li><a style="cursor: pointer;" (click)="customSearch()">Customized Search</a></li>
+          </ul>
+        </li>
+        <button class="btn btn-primary" *ngIf="!flag" (click)="findPrev()">Prev</button>
+        <button class="btn btn-primary" *ngIf="!flag" (click)="findNext()">Next</button>
+      </ul>
+    </div>
+  </div>
+</nav>
+</body>
+
+</html>
