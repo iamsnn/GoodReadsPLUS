@@ -45,7 +45,7 @@ export class SearchComponent implements OnInit {
 
     let pass = this.searchString+":"+this.checked+":"+this.author+":"+this.year+":"+(this.onlyTitle==true?"withTitle":"noTitle")+":";
 
-    this.r.navigate(['/result',pass])
+    this.r.navigate(['/result',pass]);
 
     console.log(pass+"from search page")
   }
