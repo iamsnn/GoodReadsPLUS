@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {data} from "../common/data.model";
 import {HttpClient} from "@angular/common/http";
 import {myService} from "../common/myService.service";
+import {JsonArray} from "@angular/compiler-cli/ngcc/src/packages/entry_point";
 
 @Component({
   selector: 'app-index-content',
@@ -10,7 +11,7 @@ import {myService} from "../common/myService.service";
 })
 export class IndexContentComponent implements OnInit {
 
-  list:number[];
+  list:JsonArray;
   flag = false;
   constructor(private http: HttpClient,
               private service:myService) {
@@ -21,9 +22,11 @@ export class IndexContentComponent implements OnInit {
       setTimeout(()=>{
         this.flag = true;
         if(this.flag){
-          this.http.get('http://localhost:8004/get').subscribe(
-            (res: number[]) => {
+          this.http.get('http://localhost:8004/trend?id=1').subscribe(
+
+            (res: JsonArray) => {
               this.list = res;
+
             }
           );
         }

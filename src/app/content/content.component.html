@@ -1,41 +1,40 @@
 <div class="container" >
-  {{content.length}}
-  {{booknumber1.length}}
-  {{booknumber2.length}}
-  <li>Page{{currentPage}}</li>
+  <div class="btn-group" *ngIf="showBack >=50">
+    <p>How do you like the result? :)</p>
+    <input class="btn btn-default" type="button" value="Not bad" (click)="goodResponse()">
+    <input class="btn btn-default" type="submit" value="I don't like" (click)="badResponse()">
+  </div>
+  <div *ngIf="showBack==-1">
+    <p>Thank you!</p>
+  </div>
+  <p>Page : {{currentPage}}</p>
 <hr>
 
 <div class="row" *ngIf="content.length>0" >
   <div class="col-sm-6 col-md-3" *ngFor="let r1 of booknumber1 ">
     <div class="thumbnail">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Neko_Wikipe-tan.svg/330px-Neko_Wikipe-tan.svg.png"
+      <img src="{{content[r1]['img']}}"
            alt="" height="600" width="300">
       <div class="caption">
-        <h3>Author{{content[r1]["name"]}}</h3>
-        <p>Description{{}</p>
-        <p>
-          <a href="" class="btn btn-default" role="button">
-            View Details
-          </a>
-        </p>
+        <h3>{{content[r1]["title"]}} </h3>by {{content[r1]["author"]}}
+        <br><br>
+        <p><b>Description:</b> {{content[r1]["description"]}}</p>
+        <p><a href="{{content[r1]['url']}}">Visit</a></p>
       </div>
     </div>
   </div>
 </div>
 
-<div class="row"*ngIf="content.length>=4">
+<div class="row" *ngIf="content.length>=4 && content.length<=8">
   <div class="col-sm-6 col-md-3" *ngFor="let r2 of booknumber2">
     <div class="thumbnail">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Neko_Wikipe-tan.svg/330px-Neko_Wikipe-tan.svg.png"
+      <img src="{{content[r2]['img']}}"
            alt="" height="600" width="300">
       <div class="caption">
-        <h3>Author{{content[r2]["name"]}}</h3>
-        <p>Description{{}</p>
-        <p>
-          <a href="" class="btn btn-default" role="button">
-            View Details
-          </a>
-        </p>
+        <h3>{{content[r2]['title']}}</h3> by {{content[r2]["author"]}}
+        <br><br>
+        <p><b>Description:</b> {{content[r2]['description']}}</p>
+        <p><a href="{{content[r2]['url']}}">Visit</a></p>
       </div>
     </div>
   </div>
@@ -43,4 +42,7 @@
 
 <hr>
 </div>
+
+
+
 <router-outlet></router-outlet >

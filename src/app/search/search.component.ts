@@ -43,7 +43,7 @@ export class SearchComponent implements OnInit {
 
     this.service.sendNotDisplayManage(false);
 
-    let pass = this.searchString+":"+this.checked+":"+this.author+":"+this.year+":"+(this.onlyTitle==true?"withTitle":"noTitle");
+    let pass = this.searchString+":"+this.checked+":"+this.author+":"+this.year+":"+(this.onlyTitle==true?"withTitle":"noTitle")+":";
 
     this.r.navigate(['/result',pass])
 

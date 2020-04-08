@@ -1,10 +1,11 @@
-<p>List of Trend</p>
-
+<p>Based on the click</p>
 <div class="container" >
   <div class="row row-cols-1" *ngFor="let i of list">
-    <a href="{{i}}">
+    <a href="{{i['url']}}">
   <img
-    src="{{i}}" alt="" height="200" weight="100"></a>
-    <br>
+    src="{{i['img']}}" alt="" height="200" weight="100">
+    </a>
+    <p>{{i['title']}}</p>
+    <br><br>
   </div>
 </div>

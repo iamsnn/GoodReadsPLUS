@@ -16,11 +16,15 @@ import {JsonArray} from "@angular/compiler-cli/ngcc/src/packages/entry_point";
 
 export class ContentComponent implements OnInit {
 
+  showBack = Math.random()*100;
+
   booknumber1:number[];
   booknumber2:number[];
 
   info:string='';
+
   content:JsonArray;
+
   currentPage = 1;
   constructor(private route: ActivatedRoute,
               private http: HttpClient,
@@ -63,6 +67,7 @@ export class ContentComponent implements OnInit {
         setTimeout(()=>{
           this.content = res;
 
+
           if(this.content.length<=4){
             this.booknumber1=[];
             this.booknumber2=[];
@@ -82,15 +87,14 @@ export class ContentComponent implements OnInit {
 
     this.service.getNextpage().subscribe((res:number)=>{
       setTimeout(()=>{
-        console.log(this.currentPage+"press next");
 
-        if(this.currentPage < 10)
+        if(this.currentPage < 20 && this.content.length==8)
         {
           this.currentPage ++;
-          this.http.get('http://localhost:8004/pageChange?id='+(this.currentPage+"")).subscribe(
-            (info:JsonArray) => {
+          this.http.get('http://localhost:8004/search?id='+this.info+(this.currentPage+"")).subscribe(
+            (inf:JsonArray) => {
               setTimeout(()=>{
-                this.content = info;
+                this.content = inf;
 
                 if(this.content.length<=4){
                   this.booknumber1=[];
@@ -118,10 +122,10 @@ export class ContentComponent implements OnInit {
         if(this.currentPage > 1)
         {
           this.currentPage --;
-          this.http.get('http://localhost:8004/pageChange?id='+(this.currentPage+"")).subscribe(
-            (info:JsonArray) => {
+          this.http.get('http://localhost:8004/search?id='+this.info+(this.currentPage+"")).subscribe(
+            (inf:JsonArray) => {
               setTimeout(()=>{
-                this.content = info;
+                this.content = inf;
                 if(this.content.length<=4){
                   this.booknumber1=[];
                   this.booknumber2=[];
@@ -145,6 +149,16 @@ export class ContentComponent implements OnInit {
 
   }
 
+  goodResponse():void{
+    this.showBack = -1;
+    this.http.get('http://localhost:8004/feedback?id='+this.info+(1+"")).subscribe(
+      (res:JsonArray) => {});
+  }
 
+  badResponse():void{
+    this.showBack = -1;
+    this.http.get('http://localhost:8004/feedback?id='+this.info+(-1+"")).subscribe(
+      (res:JsonArray) => {});
+  }
 }
 
