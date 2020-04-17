@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {data} from "../common/data.model";
 import {HttpClient} from "@angular/common/http";
 import {myService} from "../common/myService.service";
 import {JsonArray} from "@angular/compiler-cli/ngcc/src/packages/entry_point";

@@ -14,12 +14,12 @@
   <div class="col-sm-6 col-md-3" *ngFor="let r1 of booknumber1 ">
     <div class="thumbnail">
       <img src="{{content[r1]['img']}}"
-           alt="" height="600" width="300">
+           alt="" height="400" width="200">
       <div class="caption">
         <h3>{{content[r1]["title"]}} </h3>by {{content[r1]["author"]}}
         <br><br>
         <p><b>Description:</b> {{content[r1]["description"]}}</p>
-        <p><a href="{{content[r1]['url']}}">Visit</a></p>
+        <p><a href="{{content[r1]['url']}}" target="_blank">Visit</a></p>
       </div>
     </div>
   </div>
@@ -29,12 +29,12 @@
   <div class="col-sm-6 col-md-3" *ngFor="let r2 of booknumber2">
     <div class="thumbnail">
       <img src="{{content[r2]['img']}}"
-           alt="" height="600" width="300">
+           alt="" height="400" width="200">
       <div class="caption">
         <h3>{{content[r2]['title']}}</h3> by {{content[r2]["author"]}}
         <br><br>
         <p><b>Description:</b> {{content[r2]['description']}}</p>
-        <p><a href="{{content[r2]['url']}}">Visit</a></p>
+        <p><a href="{{content[r2]['url']}}" target="_blank">Visit</a></p>
       </div>
     </div>
   </div>

@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {data} from "../common/data.model";
 import {ActivatedRoute, NavigationExtras, Router} from "@angular/router";
 import { BehaviorSubject } from 'rxjs';
 import {myService} from "../common/myService.service";

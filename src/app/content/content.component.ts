@@ -1,6 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, Params} from "@angular/router";
-import {data} from "../common/data.model";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {myService} from "../common/myService.service";
 import {JsonArray} from "@angular/compiler-cli/ngcc/src/packages/entry_point";
@@ -14,7 +13,7 @@ import {JsonArray} from "@angular/compiler-cli/ngcc/src/packages/entry_point";
 
 
 
-export class ContentComponent implements OnInit {
+export class ContentComponent implements OnInit,OnDestroy {
 
   showBack = Math.random()*100;
 
@@ -27,6 +26,7 @@ export class ContentComponent implements OnInit {
 
   currentPage = 1;
   constructor(private route: ActivatedRoute,
+              private r: Router,
               private http: HttpClient,
               private service:myService) {
     //钩子方法内存泄漏！！！！！
@@ -61,6 +61,7 @@ export class ContentComponent implements OnInit {
 
   //store every 8 books, each time a new combi
   ngOnInit(): void {
+
     this.route.params.subscribe((params:Params) => this.info=params["id"]);
     this.http.get('http://localhost:8004/search?id='+this.info+(this.currentPage+"")).subscribe(
       (res:JsonArray) => {
@@ -159,6 +160,10 @@ export class ContentComponent implements OnInit {
     this.showBack = -1;
     this.http.get('http://localhost:8004/feedback?id='+this.info+(-1+"")).subscribe(
       (res:JsonArray) => {});
+  }
+
+  ngOnDestroy(): void {
+    this.r.navigate(['/search']);
   }
 }
 
